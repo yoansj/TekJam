@@ -21,8 +21,6 @@ public class Skills : MonoBehaviour
         playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<Movement>();
         level = 1;
-        LevelUp();
-        LevelUp();
     }
 
     // Update is called once per frame
@@ -33,7 +31,7 @@ public class Skills : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
             Shrink();
-     
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
             DoubleJump();
 
@@ -52,7 +50,7 @@ public class Skills : MonoBehaviour
             canDoubleJump = true;
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         level += 1;
     }
