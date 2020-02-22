@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Skills : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Skills : MonoBehaviour
     [Header("Lumiére")]
     public float maxIntesity = 2;
     public float maxRange = 2;
+
+    public TextMeshProUGUI TextMeshPro;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,8 @@ public class Skills : MonoBehaviour
 
         if (playerMovement.controller.m_Grounded == true)
             canDoubleJump = true;
+
+        TextMeshPro.text = "Level: " + level.ToString();
     }
 
     public void LevelUp()
