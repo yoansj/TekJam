@@ -58,6 +58,7 @@ public class Skills : MonoBehaviour
         if (playerMovement.rb.transform.localScale.x < level)
         {
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
+            playerMovement.controller.m_JumpForce += 100;
         }
     }
 
@@ -66,6 +67,7 @@ public class Skills : MonoBehaviour
         if (playerMovement.rb.transform.localScale.x != 1)
         {
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
+            playerMovement.controller.m_JumpForce -= 100;
         }
     }
 
