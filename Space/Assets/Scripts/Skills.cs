@@ -9,10 +9,15 @@ public class Skills : MonoBehaviour
 
     public int level;
     public bool canDoubleJump = true;
+    private Light playerLight;
+    [Header("Lumiére")]
+    public float maxIntesity = 2;
+    public float maxRange = 2;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<PlayerMovement>();
         level = 1;
         LevelUp();
@@ -30,6 +35,14 @@ public class Skills : MonoBehaviour
      
         if (Input.GetKeyDown(KeyCode.UpArrow))
             DoubleJump();
+
+        if (Input.GetKey(KeyCode.E))
+            Enlighten();
+        else
+        {
+            playerLight.intensity = 0;
+            playerLight.range = 0;
+        }
     }
 
     private void LevelUp()
@@ -44,6 +57,7 @@ public class Skills : MonoBehaviour
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
         }
     }
+
     private void Shrink()
     {
         if (playerMovement.rb.transform.localScale.x != 1)
@@ -59,5 +73,11 @@ public class Skills : MonoBehaviour
             playerMovement.rb.AddForce(new Vector2(0, playerMovement.jumpSpeed), ForceMode2D.Impulse);
             canDoubleJump = false;
         }
+    }
+}
+    private void Enlighten()
+    {
+        playerLight.intensity = maxIntesity;
+        playerLight.range = maxRange;
     }
 }
