@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     private GameObject player;
     private PlayerDirection playerDirection;
@@ -30,7 +30,7 @@ public class Camera : MonoBehaviour
     {
         Vector3 playerPos = player.transform.position;
 
-        playerPos.y += 1;
+        playerPos.y += 2;
         playerPos.z = transform.position.z;
         playerPos.x += cameraChangeDirEffect();
         transform.position = Vector3.SmoothDamp(transform.position, playerPos, ref velocity, Time.deltaTime * 5);
