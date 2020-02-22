@@ -11,24 +11,29 @@ public class PlayerDirection : MonoBehaviour
     };
 
     private direction_e playerDir;
+    private direction_e prevDir;
 
     // Start is called before the first frame update
     void Start()
     {
         playerDir = direction_e.UNDEFINED;
+        prevDir = direction_e.UNDEFINED;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+            setPlayerDir(prevDir);
+        else if (Input.GetKey(KeyCode.LeftArrow))
             setPlayerDir(direction_e.LEFT);
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
             setPlayerDir(direction_e.RIGHT);
     }
 
     void setPlayerDir(direction_e dir)
     {
+        prevDir = playerDir;
         playerDir = dir;
     }
 
