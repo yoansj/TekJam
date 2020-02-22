@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 976632274978621905}
   - component: {fileID: 4421196238646120666}
   m_Layer: 0
-  m_Name: NewPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 55
+  isJumping: 0
   rb: {fileID: 0}
 --- !u!114 &976632274978621905
 MonoBehaviour:
@@ -279,9 +280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888a652b4d7b89547b351a2a4b1d6778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  canDoubleJump: 1
   maxIntesity: 2
   maxRange: 2
-  level: 0
 --- !u!1 &5884542668585782309
 GameObject:
   m_ObjectHideFlags: 0
