@@ -7,8 +7,8 @@ public class Skills : MonoBehaviour
 {
     private PlayerMovement playerMovement;
 
-    [Header("Lumiére")]
     private Light playerLight;
+    [Header("Lumiére")]
     public float maxIntesity = 2;
     public float maxRange = 2;
     public int level = 0;
