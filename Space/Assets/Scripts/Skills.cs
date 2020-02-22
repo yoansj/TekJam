@@ -7,11 +7,15 @@ public class Skills : MonoBehaviour
 {
     private PlayerMovement playerMovement;
 
-    public int level = 0;
+    public int level;
     // Start is called before the first frame update
     void Start()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
+        level = 1;
+        LevelUp();
+        LevelUp();
+        LevelUp();
     }
 
     // Update is called once per frame
@@ -24,9 +28,17 @@ public class Skills : MonoBehaviour
             Shrink();
     }
 
+    private void LevelUp()
+    {
+        level += 1;
+    }
+
     private void Grow()
     {
-        playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
+        if (playerMovement.rb.transform.localScale.x < level)
+        {
+            playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
+        }
     }
     private void Shrink()
     {
