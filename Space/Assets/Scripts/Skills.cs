@@ -5,21 +5,22 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
-    private PlayerMovement playerMovement;
+    private Movement playerMovement;
 
+    public int level;
+    public bool canDoubleJump = true;
     private Light playerLight;
+
     [Header("Lumiére")]
     public float maxIntesity = 2;
     public float maxRange = 2;
-    public int level = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         playerLight = GetComponentInChildren<Light>();
-        playerMovement = GetComponentInParent<PlayerMovement>();
+        playerMovement = GetComponentInParent<Movement>();
         level = 1;
-        LevelUp();
         LevelUp();
         LevelUp();
     }
@@ -32,6 +33,9 @@ public class Skills : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
             Shrink();
+     
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            DoubleJump();
 
         if (Input.GetKey(KeyCode.E))
             Enlighten();
@@ -61,6 +65,15 @@ public class Skills : MonoBehaviour
         {
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
         }
+    }
+
+    private void DoubleJump()
+    {
+        /*if (level >= 3 && !playerMovement.isJumping && canDoubleJump)
+        {
+            playerMovement.rb.AddForce(new Vector2(0, playerMovement.jumpSpeed), ForceMode2D.Impulse);
+            canDoubleJump = false;
+        }*/
     }
 
     private void Enlighten()
