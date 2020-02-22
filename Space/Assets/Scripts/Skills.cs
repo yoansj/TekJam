@@ -44,6 +44,10 @@ public class Skills : MonoBehaviour
             playerLight.intensity = 0;
             playerLight.range = 0;
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+            Dash();
+
         if (playerMovement.controller.m_Grounded == true)
             canDoubleJump = true;
     }
@@ -82,6 +86,11 @@ public class Skills : MonoBehaviour
             playerMovement.rb.AddForce(new Vector2(0f, playerMovement.controller.m_JumpForce));
             canDoubleJump = false;
         }
+    }
+
+    private void Dash()
+    {
+        playerMovement.rb.AddForce(new Vector2(100f, 0f));
     }
 
     private void Enlighten()
