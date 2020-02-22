@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8976509152490912070}
   - component: {fileID: 8976509152490912069}
   - component: {fileID: 8976509152490912074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8976509153213845888}
   - component: {fileID: 8976509153213845889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: KillingEnemy
   m_TagString: KillZone
   m_Icon: {fileID: 0}
