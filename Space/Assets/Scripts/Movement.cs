@@ -10,7 +10,8 @@ public class Movement : MonoBehaviour
 
     private float horizontalMove = 0;
 
-    private bool isJumping = false;
+    [HideInInspector]
+    public bool isJumping = false;
 
     [HideInInspector]
     public Rigidbody2D rb;

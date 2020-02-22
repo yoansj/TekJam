@@ -10,6 +10,7 @@ public class Skills : MonoBehaviour
     public int level;
     public bool canDoubleJump = true;
     private Light playerLight;
+
     [Header("Lumiére")]
     public float maxIntesity = 2;
     public float maxRange = 2;
@@ -68,13 +69,13 @@ public class Skills : MonoBehaviour
 
     private void DoubleJump()
     {
-        if (level >= 3 && !playerMovement.canJump && canDoubleJump)
+        /*if (level >= 3 && !playerMovement.isJumping && canDoubleJump)
         {
             playerMovement.rb.AddForce(new Vector2(0, playerMovement.jumpSpeed), ForceMode2D.Impulse);
             canDoubleJump = false;
-        }
+        }*/
     }
-}
+
     private void Enlighten()
     {
         playerLight.intensity = maxIntesity;
