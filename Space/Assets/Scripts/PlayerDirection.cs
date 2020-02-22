@@ -21,9 +21,9 @@ public class PlayerDirection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
             setPlayerDir(direction_e.LEFT);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
             setPlayerDir(direction_e.RIGHT);
     }
 
