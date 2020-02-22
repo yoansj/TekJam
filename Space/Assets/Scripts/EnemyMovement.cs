@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyMovement : MonoBehaviour
 {
     private enum direction_e
@@ -10,16 +11,16 @@ public class EnemyMovement : MonoBehaviour
         RIGHT = 1,
     }
 
+    private Vector2 spawnPos;
+    public bool isDead;
     private direction_e enemyDir;
-    private Vector3 enemyPos;
-    private Vector3 enemyScale;
-
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyPos = transform.position;
-        enemyScale = transform.localScale;
+        spawnPos = new Vector2(transform.position.x, transform.position.y);
+        isDead = true;
         if (Random.Range(0, 10000) % 2 == 0)
             enemyDir = direction_e.LEFT;
         else
@@ -29,60 +30,25 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveEnemy();        
+        moveEnemy();
     }
 
     void moveEnemy()
     {
-        Vector3 enemyPos = transform.position;
         Vector3 enemyScale = transform.localScale;
 
-        enemyPos.x += (float)enemyDir / 10;
-        transform.position = enemyPos;
+        transform.Translate((int)enemyDir * Time.deltaTime * speed, 0, 0);
         if (enemyScale.x * (int)enemyDir < 0)
             enemyScale.x *= -1;
         transform.localScale = enemyScale;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "VerticalWall")
+        if (collision.gameObject.CompareTag("Half-turn"))
         {
             int dir = (int)enemyDir * -1;
             enemyDir = (direction_e)dir;
-            print("Yes");
-        } else
-        {
-            print("no");
         }
-/*            Vector3 hit = collision.contacts[0].normal;
-            Debug.Log(hit);
-            float angle = Vector3.Angle(hit, Vector3.forward);
-
-            if (Mathf.Approximately(angle, 0))
-            { // top
-                Destroy(collision.gameObject);
-                speedZ = -speedZ;
-            }
-            if (Mathf.Approximately(angle, 180))
-            { // bottom
-                Destroy(collision.gameObject);
-                speedZ = -speedZ;
-            }
-            if (Mathf.Approximately(angle, 90))
-            {
-                Vector3 cross = Vector3.Cross(Vector3.forward, hit);
-                if (cross.y > 0)
-                { // right
-                    Destroy(collision.gameObject);
-                    speedX = -speedX;
-                }
-                else
-                { // left
-                    Destroy(collision.gameObject);
-                    speedX = -speedX;
-                }
-            }
-*/
     }
 }

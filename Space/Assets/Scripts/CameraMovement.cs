@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour
     {
         Vector3 playerPos = player.transform.position;
 
-        playerPos.y += 2;
+        playerPos.y += 1;
         playerPos.z = transform.position.z;
         playerPos.x += cameraChangeDirEffect();
         transform.position = Vector3.SmoothDamp(transform.position, playerPos, ref velocity, Time.deltaTime * 5);
