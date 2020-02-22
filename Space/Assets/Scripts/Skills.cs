@@ -44,6 +44,9 @@ public class Skills : MonoBehaviour
             playerLight.intensity = 0;
             playerLight.range = 0;
         }*/
+
+        if (playerMovement.controller.m_Grounded == true)
+            canDoubleJump = true;
     }
 
     private void LevelUp()
@@ -69,11 +72,15 @@ public class Skills : MonoBehaviour
 
     private void DoubleJump()
     {
-        /*if (level >= 3 && !playerMovement.isJumping && canDoubleJump)
+        if (level >= 3 && playerMovement.controller.m_Grounded == false && canDoubleJump)
         {
-            playerMovement.rb.AddForce(new Vector2(0, playerMovement.jumpSpeed), ForceMode2D.Impulse);
+            if (playerMovement.rb.velocity.y < 0)
+            {
+                playerMovement.rb.AddForce(new Vector2(0f, (-(playerMovement.rb.velocity.y) + playerMovement.controller.m_JumpForce)));
+            }
+            playerMovement.rb.AddForce(new Vector2(0f, playerMovement.controller.m_JumpForce));
             canDoubleJump = false;
-        }*/
+        }
     }
 
     private void Enlighten()

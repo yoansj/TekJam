@@ -6,7 +6,8 @@ public class Movement : MonoBehaviour
 {
     public float moveSpeed = 40f;
 
-    private CharacterController2D controller;
+    [HideInInspector]
+    public CharacterController2D controller;
 
     private float horizontalMove = 0;
 
