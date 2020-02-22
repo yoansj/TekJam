@@ -20,6 +20,7 @@ public class KillEnemy : MonoBehaviour
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponentsInParent<BoxCollider2D>()[1].enabled = false;
             GetComponentInParent<Movement>().isJumping = true;
+            GetComponent<Skills>().LevelUp();
         }
     }
 }
