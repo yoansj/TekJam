@@ -21,8 +21,6 @@ public class Skills : MonoBehaviour
         playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<Movement>();
         level = 1;
-        LevelUp();
-        LevelUp();
     }
 
     // Update is called once per frame
@@ -33,23 +31,18 @@ public class Skills : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
             Shrink();
-     
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
             DoubleJump();
 
-        /*if (Input.GetKey(KeyCode.E))
-            Enlighten();
-        else
-        {
-            playerLight.intensity = 0;
-            playerLight.range = 0;
-        }*/
+        if (Input.GetKeyDown(KeyCode.D))
+            Dash();
 
         if (playerMovement.controller.m_Grounded == true)
             canDoubleJump = true;
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         level += 1;
     }
@@ -59,6 +52,7 @@ public class Skills : MonoBehaviour
         if (playerMovement.rb.transform.localScale.x < level)
         {
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
+            playerMovement.controller.m_JumpForce += 100;
         }
     }
 
@@ -67,6 +61,7 @@ public class Skills : MonoBehaviour
         if (playerMovement.rb.transform.localScale.x != 1)
         {
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
+            playerMovement.controller.m_JumpForce -= 100;
         }
     }
 
@@ -81,6 +76,11 @@ public class Skills : MonoBehaviour
             playerMovement.rb.AddForce(new Vector2(0f, playerMovement.controller.m_JumpForce));
             canDoubleJump = false;
         }
+    }
+
+    private void Dash()
+    {
+        playerMovement.rb.AddForce(new Vector2(100f, 0f));
     }
 
     private void Enlighten()
