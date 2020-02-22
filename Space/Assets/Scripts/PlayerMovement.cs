@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpSpeed = 10f;
+    public bool canJump = true;
 
     private Rigidbody2D rb;
 
@@ -32,7 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+        if (canJump)
+        {
+            rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            canJump = false;
+        }
     }
     void Grow()
     {
