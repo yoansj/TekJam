@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 10f;
     public bool canJump = true;
 
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +23,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
             Jump();
 
-        if (Input.GetKeyDown(KeyCode.A))
-            Grow();
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            Shrink();
-
         transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Time.deltaTime * moveSpeed;
     }
 
@@ -37,18 +32,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
             canJump = false;
-        }
-    }
-    void Grow()
-    {
-        rb.transform.localScale += new Vector3(1, 1, 0);
-    }
-
-    void Shrink()
-    {
-        if (rb.transform.localScale.x != 1)
-        {
-            rb.transform.localScale += new Vector3(-1, -1, 0);
         }
     }
 }
