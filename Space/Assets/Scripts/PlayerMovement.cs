@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpSpeed = 10f;
+    public float jumpForce = 10f;
     public bool canJump = true;
+
+    private CharacterController2D control;
+    private float horizontal = 0f;
 
     [HideInInspector]
     public Rigidbody2D rb;
@@ -15,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        control = GetComponent<CharacterController2D>();
     }
 
     // Update is called once per frame
@@ -23,14 +27,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
             Jump();
 
-        transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Time.deltaTime * moveSpeed;
+        horizontal = Input.GetAxisRaw("Horizontal") * moveSpeed;
+    }
+
+    void FixedUpdate()
+    {
+        control.Move(horizontal * Time.deltaTime, false, false);
     }
 
     void Jump()
     {
         if (canJump)
         {
-            rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            rb.MovePosition(transform.position + new Vector3(0, jumpForce * Time.deltaTime));
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             canJump = false;
         }
     }
