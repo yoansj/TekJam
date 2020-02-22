@@ -12,10 +12,14 @@ public class Movement : MonoBehaviour
 
     private bool isJumping = false;
 
+    [HideInInspector]
+    public Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

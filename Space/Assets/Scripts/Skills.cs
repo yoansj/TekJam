@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
-    private PlayerMovement playerMovement;
+    private Movement playerMovement;
 
     private Light playerLight;
     [Header("Lumiére")]
@@ -17,7 +17,7 @@ public class Skills : MonoBehaviour
     void Start()
     {
         playerLight = GetComponentInChildren<Light>();
-        playerMovement = GetComponentInParent<PlayerMovement>();
+        playerMovement = GetComponentInParent<Movement>();
         level = 1;
         LevelUp();
         LevelUp();
