@@ -37,13 +37,13 @@ public class Skills : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
             DoubleJump();
 
-        if (Input.GetKey(KeyCode.E))
+        /*if (Input.GetKey(KeyCode.E))
             Enlighten();
         else
         {
             playerLight.intensity = 0;
             playerLight.range = 0;
-        }
+        }*/
     }
 
     private void LevelUp()
