@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 enemyScale = transform.localScale;
 
         transform.Translate((int)enemyDir * Time.deltaTime * speed, 0, 0);
-        if (enemyScale.x * (int)enemyDir < 0)
+        if (enemyScale.x * (int)enemyDir > 0)
             enemyScale.x *= -1;
         transform.localScale = enemyScale;
     }

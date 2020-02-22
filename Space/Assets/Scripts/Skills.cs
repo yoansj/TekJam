@@ -80,6 +80,7 @@ public class Skills : MonoBehaviour
             }
             playerMovement.rb.AddForce(new Vector2(0f, playerMovement.controller.m_JumpForce));
             canDoubleJump = false;
+            playerMovement.controller.soundPlayer.PlaySound(0);
         }
     }
 
