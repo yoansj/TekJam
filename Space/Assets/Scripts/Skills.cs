@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.Rendering.LWRP;
 using TMPro;
 
 public class Skills : MonoBehaviour
@@ -13,11 +14,12 @@ public class Skills : MonoBehaviour
     public int levelMax;
     public int currentLevel;
     public bool canDoubleJump = true;
-    private Light playerLight;
 
-    [Header("Lumiére")]
-    public float maxIntesity = 2;
-    public float maxRange = 2;
+    private Light2D playerLight;
+    private Color basicColor;
+    private bool canGrow = true;
+    private Animator animator;
+    private float basicIntensity;
 
     public TextMeshProUGUI TextMeshPro;
 
@@ -29,8 +31,13 @@ public class Skills : MonoBehaviour
     {
         mainCamera = FindObjectOfType<Camera>();
         cameraOriginSize = mainCamera.orthographicSize;
- 
-        playerLight = GetComponentInChildren<Light>();
+
+        animator = GetComponent<Animator>();
+
+        playerLight = GetComponentInChildren<Light2D>();
+        basicColor = playerLight.color;
+        basicIntensity = playerLight.intensity;
+
         playerMovement = GetComponentInParent<Movement>();
         levelMax = 1;
         currentLevel = 1;
@@ -65,7 +72,7 @@ public class Skills : MonoBehaviour
 
     private void Grow()
     {
-        if (playerMovement.rb.transform.localScale.x <= levelMax)
+        if (playerMovement.rb.transform.localScale.x <= levelMax && canGrow == true)
         {
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
             playerMovement.controller.m_JumpForce += 100;
@@ -104,17 +111,25 @@ public class Skills : MonoBehaviour
         playerMovement.rb.AddForce(new Vector2(100f, 0f));
     }
 
-    private void Enlighten()
-    {
-        playerLight.intensity = maxIntesity;
-        playerLight.range = maxRange;
-    }
-
-     IEnumerator InvicibilityFrame()
+    IEnumerator InvicibilityFrame()
      {
+        playerLight.intensity = 0.2f;
+        playerLight.color = Color.red;
+        animator.SetBool("inv", true);
         invicibility = true;
         yield return new WaitForSeconds(2.0f);
         invicibility = false;
+        animator.SetBool("inv", false);
+    }
+
+    IEnumerator GrowCooldown()
+    {
+        canGrow = false;
+        yield return new WaitForSeconds(5.0f);
+        canGrow = true;
+        playerLight.color = basicColor;
+        playerLight.intensity = basicIntensity;
+        animator.SetBool("inv", false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -122,9 +137,11 @@ public class Skills : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) {
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().isDead || invicibility)
                 return;
+            playerMovement.controller.soundPlayer.PlaySound(1);
             if (currentLevel == 1)
                 SceneManager.LoadScene(2);
             StartCoroutine("InvicibilityFrame");
+            StartCoroutine("GrowCooldown");
             Shrink();
         }
     }
