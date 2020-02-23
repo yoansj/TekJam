@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Skills : MonoBehaviour
@@ -114,7 +115,7 @@ public class Skills : MonoBehaviour
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().isDead || invicibility)
                 return;
             if (currentLevel == 1)
-                print("Game Over :)");
+                SceneManager.LoadScene(0);
             StartCoroutine("InvicibilityFrame");
             Shrink();
         }
