@@ -23,13 +23,13 @@ public class KillEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("KillZone")) {
             if (GetComponent<Skills>().invicibility || collision.gameObject.GetComponentInParent<EnemyMovement>().isInvicible)
                 return;
-            if (collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP)
-                GetComponent<Skills>().LevelUp();
             collision.gameObject.GetComponentInParent<EnemyMovement>().hp -= 1;
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().hp != 0) {
                 collision.gameObject.GetComponentInParent<EnemyMovement>().setInvicibility();
                 return;
             }
+            if (collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP)
+                GetComponent<Skills>().LevelUp();
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponentInParent<EnemyMovement>().isDead = true;
             collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP = false;
