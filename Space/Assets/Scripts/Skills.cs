@@ -115,7 +115,7 @@ public class Skills : MonoBehaviour
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().isDead || invicibility)
                 return;
             if (currentLevel == 1)
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(2);
             StartCoroutine("InvicibilityFrame");
             Shrink();
         }
