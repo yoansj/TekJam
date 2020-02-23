@@ -26,16 +26,15 @@ public class Skills : MonoBehaviour
         playerMovement = GetComponentInParent<Movement>();
         levelMax = 1;
         currentLevel = 1;
-        LevelUp();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Space))
             Grow();
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.X))
             Shrink();
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -47,7 +46,7 @@ public class Skills : MonoBehaviour
         if (playerMovement.controller.m_Grounded == true)
             canDoubleJump = true;
 
-        TextMeshPro.text = "Level: " + levelMax.ToString() + "/" + levelMax.ToString();
+        TextMeshPro.text = "Level: " + currentLevel.ToString() + "/" + levelMax.ToString();
     }
 
     public void LevelUp()
@@ -58,7 +57,7 @@ public class Skills : MonoBehaviour
 
     private void Grow()
     {
-        if (playerMovement.rb.transform.localScale.x < currentLevel)
+        if (playerMovement.rb.transform.localScale.x <= currentLevel)
         {
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
             playerMovement.controller.m_JumpForce += 100;
@@ -67,7 +66,7 @@ public class Skills : MonoBehaviour
 
     private void Shrink()
     {
-        if (playerMovement.rb.transform.localScale.x != 1)
+        if (playerMovement.rb.transform.localScale.x != 2)
         {
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
             playerMovement.controller.m_JumpForce -= 100;
