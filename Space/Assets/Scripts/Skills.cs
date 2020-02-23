@@ -29,7 +29,7 @@ public class Skills : MonoBehaviour
     {
         mainCamera = FindObjectOfType<Camera>();
         cameraOriginSize = mainCamera.orthographicSize;
- 
+
         playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<Movement>();
         levelMax = 1;
@@ -70,7 +70,7 @@ public class Skills : MonoBehaviour
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
             playerMovement.controller.m_JumpForce += 100;
             currentLevel += 1;
-            mainCamera.orthographicSize += 1;
+            ResizeCamera(1);
         }
     }
 
@@ -81,8 +81,17 @@ public class Skills : MonoBehaviour
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
             playerMovement.controller.m_JumpForce -= 100;
             currentLevel -= 1;
-            mainCamera.orthographicSize -= 1;
+            ResizeCamera(-1);
         }
+    }
+
+    void ResizeCamera(int value)
+    {
+        float newSize = mainCamera.orthographicSize;
+
+        newSize += value;
+        mainCamera.orthographicSize = newSize;
+//        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, newSize, Time.deltaTime * 5.0f);
     }
 
     private void DoubleJump()

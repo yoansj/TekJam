@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector2 spawnPos;
     public int hp;
+    private int baseHp;
     public bool giveXP;
     public bool isInvicible;
     public bool isDead;
@@ -26,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        baseHp = hp;
         box = GetComponentsInChildren<BoxCollider2D>()[1];
         animator = GetComponent<Animator>();
         spawnPos = new Vector2(transform.position.x, transform.position.y);
@@ -62,6 +64,7 @@ public class EnemyMovement : MonoBehaviour
             isAwake = false;
             isDead = false;
             animator.SetBool("IsDead", false);
+            hp = baseHp;
         }
     }
 

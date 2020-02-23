@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     private float horizontalMove = 0;
 
     [HideInInspector]
-    public bool isJumping = false;
+    public bool isJumping;
 
     [HideInInspector]
     public Rigidbody2D rb;
@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isJumping = false;
         controller = GetComponent<CharacterController2D>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
