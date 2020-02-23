@@ -17,7 +17,7 @@ public class DestroyWall : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 0 && skill.level == WallLvl)
+        if (collision.gameObject.layer == 0 && skill.currentLevel == WallLvl)
         {
             Instantiate(explosion, this.transform.position, this.transform.rotation).GetComponent<ParticleSystem>().Play();
             Destroy(gameObject);
