@@ -17,18 +17,37 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController2D>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal");
 
+        if (horizontalMove > 0)
+        {
+            animator.SetBool("goRight", true);
+            animator.SetBool("goLeft", false);
+        }
+        else if (horizontalMove < 0)
+        {
+            animator.SetBool("goRight", false);
+            animator.SetBool("goLeft", true);
+        }
+        else
+        {
+            animator.SetBool("goRight", false);
+            animator.SetBool("goLeft", false);
+        }
+        horizontalMove *= moveSpeed;
         if (Input.GetKeyDown(KeyCode.UpArrow))
             isJumping = true;
     }
