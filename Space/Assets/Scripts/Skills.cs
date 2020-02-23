@@ -21,9 +21,15 @@ public class Skills : MonoBehaviour
 
     public TextMeshProUGUI TextMeshPro;
 
+    private Camera mainCamera;
+    private float cameraOriginSize;
+
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = FindObjectOfType<Camera>();
+        cameraOriginSize = mainCamera.orthographicSize;
+ 
         playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<Movement>();
         levelMax = 1;
@@ -64,6 +70,7 @@ public class Skills : MonoBehaviour
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
             playerMovement.controller.m_JumpForce += 100;
             currentLevel += 1;
+            mainCamera.orthographicSize += 1;
         }
     }
 
@@ -74,6 +81,7 @@ public class Skills : MonoBehaviour
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
             playerMovement.controller.m_JumpForce -= 100;
             currentLevel -= 1;
+            mainCamera.orthographicSize -= 1;
         }
     }
 

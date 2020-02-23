@@ -15,6 +15,7 @@ public class DestroyWall : MonoBehaviour
         player = GameObject.Find("Player");
         skill = player.GetComponent<Skills>();
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 10 && skill.currentLevel >= WallLvl)
@@ -23,6 +24,5 @@ public class DestroyWall : MonoBehaviour
             Destroy(gameObject);
             player.GetComponent<CharacterController2D>().soundPlayer.PlaySound(3);
         }
-        
     }
 }
