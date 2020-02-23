@@ -8,7 +8,8 @@ public class Skills : MonoBehaviour
 {
     private Movement playerMovement;
 
-    public int level;
+    public int levelMax;
+    public int currentLevel;
     public bool canDoubleJump = true;
     private Light playerLight;
 
@@ -23,7 +24,9 @@ public class Skills : MonoBehaviour
     {
         playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<Movement>();
-        level = 1;
+        levelMax = 1;
+        currentLevel = 1;
+        LevelUp();
     }
 
     // Update is called once per frame
@@ -44,17 +47,18 @@ public class Skills : MonoBehaviour
         if (playerMovement.controller.m_Grounded == true)
             canDoubleJump = true;
 
-        TextMeshPro.text = "Level: " + level.ToString();
+        TextMeshPro.text = "Level: " + levelMax.ToString() + "/" + levelMax.ToString();
     }
 
     public void LevelUp()
     {
-        level += 1;
+        levelMax += 1;
+        currentLevel += 1;
     }
 
     private void Grow()
     {
-        if (playerMovement.rb.transform.localScale.x < level)
+        if (playerMovement.rb.transform.localScale.x < currentLevel)
         {
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
             playerMovement.controller.m_JumpForce += 100;
@@ -72,7 +76,7 @@ public class Skills : MonoBehaviour
 
     private void DoubleJump()
     {
-        if (level >= 3 && playerMovement.controller.m_Grounded == false && canDoubleJump)
+        if (currentLevel >= 3 && playerMovement.controller.m_Grounded == false && canDoubleJump)
         {
             if (playerMovement.rb.velocity.y < 0)
             {
