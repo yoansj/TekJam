@@ -21,6 +21,8 @@ public class KillEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("KillZone")) {
+            if (GetComponent<Skills>().invicibility)
+                return;
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP)
                 GetComponent<Skills>().LevelUp();
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;

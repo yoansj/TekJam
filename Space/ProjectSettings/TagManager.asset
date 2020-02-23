@@ -7,6 +7,7 @@ TagManager:
   - VerticalWall
   - Half-turn
   - KillZone
+  - Enemy
   layers:
   - Default
   - TransparentFX

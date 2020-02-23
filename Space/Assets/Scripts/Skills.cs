@@ -8,6 +8,7 @@ public class Skills : MonoBehaviour
 {
     private Movement playerMovement;
 
+    public bool invicibility;
     public int levelMax;
     public int currentLevel;
     public bool canDoubleJump = true;
@@ -26,6 +27,7 @@ public class Skills : MonoBehaviour
         playerMovement = GetComponentInParent<Movement>();
         levelMax = 1;
         currentLevel = 1;
+        invicibility = false;
     }
 
     // Update is called once per frame
@@ -97,5 +99,25 @@ public class Skills : MonoBehaviour
     {
         playerLight.intensity = maxIntesity;
         playerLight.range = maxRange;
+    }
+
+     IEnumerator InvicibilityFrame()
+     {
+        invicibility = true;
+        yield return new WaitForSeconds(2.0f);
+        invicibility = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) {
+            if (collision.gameObject.GetComponentInParent<EnemyMovement>().isDead || invicibility)
+                return;
+            print("yes");
+            if (currentLevel == 1)
+                print("Game Over :)");
+            StartCoroutine("InvicibilityFrame");
+            Shrink();
+        }
     }
 }
