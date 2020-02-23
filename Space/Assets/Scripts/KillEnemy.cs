@@ -24,6 +24,8 @@ public class KillEnemy : MonoBehaviour
             if (GetComponent<Skills>().invicibility || collision.gameObject.GetComponentInParent<EnemyMovement>().isInvicible)
                 return;
             collision.gameObject.GetComponentInParent<EnemyMovement>().hp -= 1;
+            GetComponentInParent<Movement>().isJumping = true;
+            controller.soundPlayer.PlaySound(2);
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().hp != 0) {
                 collision.gameObject.GetComponentInParent<EnemyMovement>().setInvicibility();
                 return;
@@ -34,8 +36,6 @@ public class KillEnemy : MonoBehaviour
             collision.gameObject.GetComponentInParent<EnemyMovement>().isDead = true;
             collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP = false;
             collision.gameObject.GetComponentInParent<Animator>().SetBool("IsDead", true);
-            GetComponentInParent<Movement>().isJumping = true;
-            controller.soundPlayer.PlaySound(2);
         }
     }
 }

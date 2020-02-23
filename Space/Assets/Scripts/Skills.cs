@@ -117,10 +117,14 @@ public class Skills : MonoBehaviour
         invicibility = false;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) {
-            if (collision.gameObject.GetComponentInParent<EnemyMovement>().isDead || invicibility)
+            if (
+                collision.gameObject.GetComponentInParent<EnemyMovement>().isDead
+                || collision.gameObject.GetComponentInParent<EnemyMovement>().isInvicible
+                || invicibility
+            )
                 return;
             if (currentLevel == 1)
                 SceneManager.LoadScene(2);
