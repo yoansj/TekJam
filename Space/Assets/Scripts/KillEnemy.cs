@@ -18,7 +18,9 @@ public class KillEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("KillZone")) {
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponentsInParent<BoxCollider2D>()[1].enabled = false;
+//            collision.gameObject.GetComponentsInParent<BoxCollider2D>()[1].enabled = false;
+            collision.gameObject.GetComponentInParent<EnemyMovement>().isDead = true;
+            collision.gameObject.GetComponentInParent<Animator>().SetBool("IsDead", true);
             GetComponentInParent<Movement>().isJumping = true;
             GetComponent<Skills>().LevelUp();
         }
