@@ -52,15 +52,15 @@ public class Skills : MonoBehaviour
     public void LevelUp()
     {
         levelMax += 1;
-        currentLevel += 1;
     }
 
     private void Grow()
     {
-        if (playerMovement.rb.transform.localScale.x <= currentLevel)
+        if (playerMovement.rb.transform.localScale.x <= levelMax)
         {
             playerMovement.rb.transform.localScale += new Vector3(1, 1, 0);
             playerMovement.controller.m_JumpForce += 100;
+            currentLevel += 1;
         }
     }
 
@@ -70,6 +70,7 @@ public class Skills : MonoBehaviour
         {
             playerMovement.rb.transform.localScale += new Vector3(-1, -1, 0);
             playerMovement.controller.m_JumpForce -= 100;
+            currentLevel -= 1;
         }
     }
 
