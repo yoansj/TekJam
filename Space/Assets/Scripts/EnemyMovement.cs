@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private Vector2 spawnPos;
+    public bool giveXP;
     public bool isDead;
     public bool isAwake;
     private direction_e enemyDir;

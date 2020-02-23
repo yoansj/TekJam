@@ -21,12 +21,13 @@ public class KillEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("KillZone")) {
+            if (collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP)
+                GetComponent<Skills>().LevelUp();
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-//            collision.gameObject.GetComponentsInParent<BoxCollider2D>()[1].enabled = false;
             collision.gameObject.GetComponentInParent<EnemyMovement>().isDead = true;
+            collision.gameObject.GetComponentInParent<EnemyMovement>().giveXP = false;
             collision.gameObject.GetComponentInParent<Animator>().SetBool("IsDead", true);
             GetComponentInParent<Movement>().isJumping = true;
-            GetComponent<Skills>().LevelUp();
             controller.soundPlayer.PlaySound(2);
         }
     }
