@@ -23,7 +23,6 @@ public class Skills : MonoBehaviour
     {
         playerLight = GetComponentInChildren<Light>();
         playerMovement = GetComponentInParent<Movement>();
-        level = 1;
     }
 
     // Update is called once per frame
