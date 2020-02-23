@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da4a618024f97846a553f4089824df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 1
   giveXP: 1
   isDead: 0
   isAwake: 0

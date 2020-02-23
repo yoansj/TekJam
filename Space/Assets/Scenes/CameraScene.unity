@@ -1612,6 +1612,11 @@ PrefabInstance:
       propertyPath: isDead
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8976509152490912070, guid: 46b5d611820faf0448f59773379fbcdb,
+        type: 3}
+      propertyPath: hp
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8976509152490912073, guid: 46b5d611820faf0448f59773379fbcdb,
         type: 3}
       propertyPath: m_LocalPosition.x

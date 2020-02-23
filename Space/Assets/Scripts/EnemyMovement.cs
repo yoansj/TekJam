@@ -12,7 +12,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private Vector2 spawnPos;
+    public int hp;
     public bool giveXP;
+    public bool isInvicible;
     public bool isDead;
     public bool isAwake;
     private direction_e enemyDir;
@@ -28,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spawnPos = new Vector2(transform.position.x, transform.position.y);
         isDead = false;
+        isInvicible = false;
         if (Random.Range(0, 10000) % 2 == 0)
             enemyDir = direction_e.LEFT;
         else
@@ -45,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 enemyScale = transform.localScale;
 
-        if (!isDead)
+        if (!isDead && !isInvicible)
             transform.Translate((int)enemyDir * Time.deltaTime * speed, 0, 0);
         if (enemyScale.x * (int)enemyDir > 0)
             enemyScale.x *= -1;
@@ -60,6 +63,20 @@ public class EnemyMovement : MonoBehaviour
             isDead = false;
             animator.SetBool("IsDead", false);
         }
+    }
+
+    IEnumerator InvicibilityFrame()
+    {
+        animator.SetBool("IsInvicible", true);
+        isInvicible = true;
+        yield return new WaitForSeconds(1.0f);
+        isInvicible = false;
+        animator.SetBool("IsInvicible", false);
+    }
+
+    public void setInvicibility()
+    {
+        StartCoroutine("InvicibilityFrame");
     }
 
     void OnTriggerEnter2D(Collider2D collision)
