@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class KillEnemy : MonoBehaviour
 {
+    [HideInInspector]
+    public CharacterController2D controller;
+
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<CharacterController2D>();
     }
 
     // Update is called once per frame
@@ -23,6 +27,7 @@ public class KillEnemy : MonoBehaviour
             collision.gameObject.GetComponentInParent<Animator>().SetBool("IsDead", true);
             GetComponentInParent<Movement>().isJumping = true;
             GetComponent<Skills>().LevelUp();
+            controller.soundPlayer.PlaySound(2);
         }
     }
 }
