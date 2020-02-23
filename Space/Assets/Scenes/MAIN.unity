@@ -19114,6 +19114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5629926510443347156, guid: a3b0f40d61194b14d8d1ca86e089c54c,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7230343703953280230, guid: a3b0f40d61194b14d8d1ca86e089c54c,
         type: 3}
       propertyPath: m_Color.r

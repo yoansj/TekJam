@@ -21,6 +21,7 @@ public class DestroyWall : MonoBehaviour
         {
             Instantiate(explosion, this.transform.position, this.transform.rotation).GetComponent<ParticleSystem>().Play();
             Destroy(gameObject);
+            player.GetComponent<CharacterController2D>().soundPlayer.PlaySound(3);
         }
         
     }

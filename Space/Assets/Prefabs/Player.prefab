@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888a652b4d7b89547b351a2a4b1d6778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invicibility: 0
   levelMax: 0
   currentLevel: 0
   canDoubleJump: 1
@@ -538,3 +539,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d013d64cd6100154785809dd14c49ead, type: 3}
   - {fileID: 8300000, guid: 14ff00a7707242c469d6ac8f435f3023, type: 3}
   - {fileID: 8300000, guid: db061ca9f9e87534b89266c37d7607e1, type: 3}
+  - {fileID: 8300000, guid: 410ea327b9f7cc24d8efb385601ecfe1, type: 3}
