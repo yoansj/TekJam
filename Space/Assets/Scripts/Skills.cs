@@ -75,7 +75,7 @@ public class Skills : MonoBehaviour
 
     private void DoubleJump()
     {
-        if (currentLevel >= 3 && playerMovement.controller.m_Grounded == false && canDoubleJump)
+        if (currentLevel >= 4 && playerMovement.controller.m_Grounded == false && canDoubleJump)
         {
             if (playerMovement.rb.velocity.y < 0)
             {
