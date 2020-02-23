@@ -113,7 +113,6 @@ public class Skills : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) {
             if (collision.gameObject.GetComponentInParent<EnemyMovement>().isDead || invicibility)
                 return;
-            print("yes");
             if (currentLevel == 1)
                 print("Game Over :)");
             StartCoroutine("InvicibilityFrame");
