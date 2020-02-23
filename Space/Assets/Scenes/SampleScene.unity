@@ -7123,7 +7123,7 @@ PrefabInstance:
     - target: {fileID: 7230343703953280230, guid: a3b0f40d61194b14d8d1ca86e089c54c,
         type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7230343703953280230, guid: a3b0f40d61194b14d8d1ca86e089c54c,
         type: 3}
